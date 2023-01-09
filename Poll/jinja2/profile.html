@@ -1,0 +1,147 @@
+{% extends 'header.html' %}
+{% block content %} 
+<style type="text/css">
+.main_card{
+  margin-top:-25px}
+.plus_icon{
+margin-top:-25px;
+margin-left:50%;
+color:green;
+
+
+}
+.green_tick{
+color:green}</style>
+<section >
+  <div class="container py-2 main_card">
+    <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="{{ url ('home') }}">Home</a></li>
+ 
+            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <div class="row">
+    {% if user.is_superuser %}
+   <h1 class="text-center"> Welcome to Admin Portal </h1> 
+   <div class="col-lg-12">
+    <div class="card mb-4">
+    <form method="post" enctype="multipart/form-data" data-ajax="false">
+      {{ csrf_input }}
+      <div class="card-body text-center">
+        <label for="profile" class="text-center mb-4"><img id="profile_output" src="{{ static ('user_1.jpg') }}"
+          class="rounded-circle img-fluid" style="width: 160px;height:160px">
+        <div class="plus_icon text-center">
+        <i class="fas fa-solid fa-pen-to-square fa-lg"></i></div>
+        </label>
+        <input type="file" name="profile_pic" id="profile"  style="display:none;" accept="image/*" >
+        
+
+        <h5 class="my-3">{{user.first_name}} {{user.last_name}}{% if user.is_superuser %}<i class="fas fa-check-circle green_tick"></i>{% endif %}</h5>
+         <p class="text-muted mb-1">Last Login: {{user.last_login}} (IST)</p>
+        <p class="text-muted mb-1">{{user.email}}</p>
+        <p class="text-muted mb-4">Admin</p>
+    
+   
+   <a href="{{ url ('password') }}" class="btn btn-primary submit_button form-control mb-2" id="btn_submit">Change password</a>   
+    <a href="{{ url ('userdetail') }}" class="btn btn-primary submit_button form-control mb-2" id="btn_submit">View All Users</a>
+    <!--   <div class="d-flex justify-content-center mb-2">
+          <button type="submit" class="btn btn-primary submit_button form-control">Update Profile</button>
+ 
+        </div> -->
+      </div>
+      </form>
+    </div>
+
+  </div>
+  
+    {% elif user_profile %}
+    {% for info in user_profile %}
+      <div class="col-lg-4">
+        <div class="card mb-4">
+        <form method="post" enctype="multipart/form-data" data-ajax="false">
+          {{ csrf_input }}
+          <div class="card-body text-center">
+            <label for="profile" class="text-center mb-4"><img id="profile_output" src="{% if info.profile_pic %}{{info.profile_pic.url}} {% elif info.gender == 'Female' %} {{ static ('user_2.jpg') }} {% else %} {{ static ('user_1.jpg') }}{% endif %}" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 160px;height:160px">
+            <div class="plus_icon text-center">
+            <i class="fas fa-solid fa-pen-to-square fa-lg"></i></div>
+            </label>
+            <input type="file" name="profile_pic" id="profile"  style="display:none;" accept="image/*" >
+            
+ 
+            <h5 class="my-3">{{info.first_name|title}} {{info.last_name|title}}{% if user.is_superuser %}<i class="fas fa-check-circle green_tick"></i>{% endif %}</h5>
+             <p class="text-muted mb-1">Last Login: {{user.last_login}} (IST)</p>
+            <p class="text-muted mb-1">Phone: {{info.mobile_number}}</p>
+            <p class="text-muted mb-4">{{info.email}}</p>
+     
+       <a href="{{ url ('password') }}" class="btn btn-primary submit_button form-control mb-2" id="btn_submit">Change password</a>   
+    
+  
+          </div>
+          </form>
+        </div>
+   
+      </div>
+      
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+     <h1>Questions </h1>  
+      
+         {% for poll in poll_list %}     
+          {% if user.email == poll.email %}  
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">{{poll.question.html|safe}}</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><span class="pull-right">
+                   <a href="{{ url('edit-poll', args=[poll.pk]) }}" class="btn btn-info btn-xs">Edit</a> &nbsp;
+                <a href="result/{{poll.pk}}" class="btn btn-default btn-xs">Total Votes: {{poll.total}}</a> &nbsp;
+                
+                </span></p>
+              </div>
+            </div>
+            <hr>
+ 
+        
+        {% endif %}
+           {% endfor %} 
+          
+        {% if user.email in poll_list %}
+        <h1>  You didn't created any poll, create a poll</h1>
+      <a href ="{{ url('create-poll') }}" class="btn btn-primary submit_button m-2 text-center">Create New Poll</a>
+      
+      {% endif %}
+          </div>
+        </div>
+     
+      </div>
+      
+      
+      {% endfor %}
+  
+ {% else %}
+      <meta http-equiv="refresh" content="0;URL={{request.build_absolute_uri()}}/social-create/{{user.email}}/{{user.first_name}}" />
+   
+ {% endif %}
+
+    </div>
+  </div>
+</section>
+<script>
+let loadProfile = document.getElementById("profile");
+ loadProfile.onchange = function() {
+ this.form.submit();
+  var profile = document.getElementById('profile_output');
+profile.src = URL.createObjectURL(event.target.files[0]);
+  };
+  
+</script>
+{% endblock %}

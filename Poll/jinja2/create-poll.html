@@ -1,0 +1,41 @@
+{% extends "header.html" %} 
+{% block content %}
+{{form.media}}
+<style type="text/css">
+.ql-editor{
+    height:150px!important;
+    background-color:white;
+    
+}
+{% if form.option_one.errors %}
+input{
+ border: 1px solid red!important;
+ }
+ {% endif %}
+.django_error{font-size:13px;margin-left:-30px;border-top-left-radius:0;border-bottom-left-radius:0}
+</style>
+
+<form method="post"  enctype="multipart/form-data" data-ajax="false" class="row g-3 needs-validation  m-2" novalidate>
+ {{ csrf_input }}  
+ {% for field in form %}
+ {% if field.name != "name" and field.name != "profile" and field.name != "email"%}
+  <div class="col-md-12">
+ <label>{{field.label}}</label>
+  {{field}}
+  <div class="django_error">
+  <span class="error">{{field.errors}}</span>
+  </div>
+  <div class="invalid-feedback " >
+  <span class="error">This field is required!</span>
+  </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+   {% for user in user_profile %}
+   <input name="name" value="{{user.first_name}} {{user.last_name}}" hidden>
+  <input name="profile" value="{{user.profile_pic}}" hidden>
+  <input name="email" value="{{user.email}}" hidden>
+  {% endfor %}
+  <button  type="submit" class="btn btn-primary submit_button mb-4">Submit</button>
+</form>
+{% endblock %}

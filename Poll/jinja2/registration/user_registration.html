@@ -1,0 +1,63 @@
+
+{% extends 'header.html' %}
+{% block content %}
+{{ form.media }}
+<style type="text/css">
+.form-select:focus{
+        border-color: #00aa54!important;
+            box-shadow: 0 0 0 0.25rem rgb(113 205 110 / 26%)!important;
+            }
+
+            .error-template {padding: 40px 15px;text-align: center;}
+.error-actions {margin-top:15px;margin-bottom:15px;}
+.error-actions .btn { margin-right:10px; }
+</style>
+
+<form method="post"  enctype="multipart/form-data" data-ajax="false" class="row g-3 needs-validation  m-2" novalidate>
+ {{ csrf_input }}
+  
+
+ 
+   
+   {% for field in form.visible_fields() -%}
+   
+  {% if field.name == "profile_pic"%} 
+  <div class ="d-flex justify-content-center" >
+     
+    {{ field }}
+    <p><label for="file" style="cursor: pointer"><img id="output"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqKCA0WCWoqjIX5hwq6JFfaakFaA2qzhHOUGdFx7vARMfel6LqTGZPT0Du&s=10"  style ="height:150px; width:150px;border:solid; border-radius:50%;"/></label></p>
+  <!--  <img src="https://cdn-icons-png.flaticon.com/512/83/83574.png" style="height:30px;margin-left:58%;margin-top:-90px;">  -->
+ 
+   </div>
+     {% endif %}
+     {% if field.name != "profile_pic" %} 
+   <div class ="col-md-6">
+    
+<label>{{field.label}} </label> {{field}} 
+<p class="error" {% if field.name == 'mobile_number' %}id="m_error"{% endif %}>{% for error in field.errors %}{{ error }}{% endfor %}</p> 
+ <div class="invalid-feedback " >
+ <span class="error">This field is required!</span>
+ </div>
+ </div>
+
+     {% endif %}
+
+  {% endfor -%}
+ 
+
+     <button type="submit" class="btn btn-primary submit_button mb-2 mt-5" id="submit"> 
+ SUBMIT </button>
+      
+        </form>
+
+ 
+<script>
+  let loadProfiles = document.getElementById("file");
+  loadProfiles.onchange = function() {
+ 
+  var profiles = document.getElementById('output');
+  profiles.src = URL.createObjectURL(event.target.files[0]);
+  };
+  
+  </script>
+{% endblock %}

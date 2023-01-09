@@ -1,0 +1,32 @@
+{% extends 'header.html' %}
+{% block content %} 
+
+  <img src="{{ static ('bs-logo.png') }}" class="card-img-top">
+<div class="card mb-4 mb-lg-0 mt-3">
+     <div class="card-body p-0">
+       <ul class="list-group list-group-flush rounded-3">
+         <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+           <i class="fas fa-globe fa-lg text-warning"></i>
+          <a href="http://3.113.7.96/" target="_blank"> <p class="mb-0">https://mapevent.com</p>
+         </li>
+         <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+           <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+          <a href="https://github.com/vipul-patilw" target="_blank"> <p class="mb-0">@vipul-patilw</p></a>
+         </li>
+         <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+           <i class="fab fa-linkedin-in fa-lg" style="color: #0077b5;"></i>
+          <a href="https://www.linkedin.com/in/vipul-patil-32b65721b" target="_blank"> <p class="mb-0">@vipul-patil</p></a>
+         </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+      <i class="fas fa-user fa-lg" style="color: #0077b5;"></i>
+      <a href="{{ url ('bio-data') }}" target="_blank"> <p class="mb-0">@bio-data</p></a>
+      </li>
+       </ul>
+     </div>
+   </div>
+
+<hr>
+ <p>copyright &copy; Jan 07, 2022 Develope by Vipul Patil </p>
+
+{% endblock %}
+ 

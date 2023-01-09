@@ -1,0 +1,30 @@
+{% extends 'header.html' %}
+{% block content %}
+
+<style type="text/css">
+            .error-template {padding: 40px 15px;text-align: center;}
+.error-actions {margin-top:15px;margin-bottom:15px;}
+.error-actions .btn { margin-right:10px; }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1>
+                    Oops!</h1>
+                <h2>
+                    404 Not Found</h2>
+                <div class="error-details">
+                    Sorry, an error has occured, Requested page not found!<br>
+                   <strong>"{{request.path}}"</strong> Is not a valid url
+                </div>
+                <div class="error-actions">
+                    <a href="{{ url('home') }}" class="btn btn-primary btn-lg submit_button"><i class="fa-solid fa-house" style="color:white"></i>
+                        Take Me Home </a><a href="{{ url('about') }}" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  {% endblock %}

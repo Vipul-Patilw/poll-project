@@ -1,0 +1,52 @@
+
+ {% extends 'header.html' %} 
+ {% block content %}  
+
+
+   
+ <div class="content" >
+     {% if user.is_authenticated %}
+     <meta http-equiv="refresh" content="0;URL=http://54.199.247.179/" />
+     {% endif %}
+     {% if form.errors %}
+     
+    
+     <div class="alert alert-danger alert-dismissible fade show my-0" role="alert" >
+  
+     <p> email or password is incorrect </p>    
+     </div>
+   
+  {% endif %}
+     <br> 
+     <form method="post" >
+     {{ csrf_input }}
+    
+     <input type ="email"  name="username" class="form-control mb-5" id="form12" placeholder="Email" required>
+    
+     
+     
+     <input type="password"  name="password" class="form-control mb-5" id="form13" placeholder="Password" required>
+    
+     
+    
+     <button type="submit" class="btn btn-primary submit_button">LOGIN</button></a><br><br>
+     
+     </form>
+     <br> 
+ 
+     <p class="text-center">Click on SIGN IN to create new accout thank you!</p><br>
+     
+     
+     
+     <a href="{{ url('registration') }}"><button type="button" class="btn btn-primary red_button">SIGN IN</button></a>
+                                    <p class="text-center m-4">OR</p>    
+            <button class="btn btn-primary mb-2" >
+       <a style="color:white" href="">Login With Gmail <img src="{{ static('gmail-logo.png')}}" class=""
+        height="20"
+        width="20"
+        alt="avtar"
+        loading="lazy"/></a>
+            </button>
+<p class="text-center"> Note: Cause I don't have proper domain for my website , Login with Gmail will not work on live server but it will work on local server. </p>
+ </div> 
+ {% endblock %}
