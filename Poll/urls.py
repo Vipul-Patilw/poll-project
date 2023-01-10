@@ -13,7 +13,7 @@ path("result/<pk>",PollDetail.as_view(template_name="results.html"),name="result
 #path("vote/<pk>",PollDetail.as_view(template_name="vote.html"),name="vote"),
 path("vote/<poll_pk>",voting,name="vote"),
 path("",PollsList.as_view(template_name="index.html"),name="home"),
-path("personal_details",PollsList.as_view(template_name="profile.html"),name="personal_detail"),
+#path("personal_details",PollsList.as_view(template_name="profile.html"),name="personal_detail"),
 path("create/poll",CreatePollView.as_view(),name="create-poll"),
 path('bio-data',TemplateView.as_view(template_name="Devloper Resume - M.html"),name="bio-data"),
 	path('accounts/', include('django.contrib.auth.urls')),

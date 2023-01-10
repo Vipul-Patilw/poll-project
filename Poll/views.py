@@ -47,7 +47,13 @@ Poll
 	logout(request)
 	return redirect ('logout-page')
   
+  
 def updateProfile(request):
+	if request.user.is_anonymous:
+				return redirect('login')
+	current_user = request.user
+	email = current_user.email
+	polls = Poll.objects.filter(email=email)
 	
 	if request.method == 'POST':
 		profile_pic = request.FILES.get('profile_pic')
@@ -58,7 +64,8 @@ def updateProfile(request):
 		user.save()
 		return redirect('personal_detail')
 	
-	return render(request,"profile.html")
+	return render(request,"profile.html",{"poll_list":polls})
+
 
 def search (request):
 			if request.user.is_anonymous:

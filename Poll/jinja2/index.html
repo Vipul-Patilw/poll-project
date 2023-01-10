@@ -1,6 +1,5 @@
 {% extends "header.html" %}
 
-<style type="text/css">
 
 {% block content %}
    {% if not user_profile  and not user.is_superuser and not user.is_staff %}
@@ -49,6 +48,7 @@
           </div>  
        </div> 
             <ul class="list-group">
+               {% if poll_list %}  
                  {% for poll in poll_list %}  
                 <li class="list-group-item">
                     <strong>{{poll.question.html|safe}}</strong>
@@ -63,7 +63,12 @@
                     </span>
           
                 </li>
+            
              {% endfor %}
+             {% else %}
+          <h1>   No Polls are created create a poll</h1>
+             {% endif %}
+            
             </ul>
 
         </div>

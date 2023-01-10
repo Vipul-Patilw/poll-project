@@ -87,14 +87,14 @@ color:green}</style>
         </div>
    
       </div>
-      {% endfor %}
+    {% endfor %}  
       <div class="col-lg-8">
         <div class="card mb-4">
           <div class="card-body">
      <h1>Questions </h1>  
-      
+      {% if poll_list %}
          {% for poll in poll_list %}     
-          {% if user.email == poll.email %}  
+        
             <div class="row">
               <div class="col-sm-3">
                 <p class="mb-0">{{poll.question.html|safe}}</p>
@@ -110,22 +110,19 @@ color:green}</style>
             <hr>
  
         
-        {% endif %}
+     
            {% endfor %} 
+          {% else %}
+          <h1>  You didn't created any poll, create a poll</h1>
+          <a href ="{{ url('create-poll') }}" class="btn btn-primary submit_button m-2 text-center">Create New Poll</a>
           
-        {% if user.email in poll_list %}
-        <h1>  You didn't created any poll, create a poll</h1>
-      <a href ="{{ url('create-poll') }}" class="btn btn-primary submit_button m-2 text-center">Create New Poll</a>
-      
-      {% endif %}
+          {% endif %}
+     
           </div>
         </div>
      
       </div>
       
-      
-    
-  
 
  {% endif %}
 
