@@ -12,7 +12,7 @@ def adding_task(x, y):
 
 @periodic_task(run_every=crontab(minute='*/1'))
 def delete_old_foos():
-    # Query all the foos in our database
+  
     polls = Poll.objects.all()
 
     # Iterate through them

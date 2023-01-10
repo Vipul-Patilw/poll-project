@@ -1,12 +1,12 @@
 from django.db import models
 from PIL import Image
 #import numpy as np
-
+from django.utils import timezone
 from django.contrib.auth.models import User
 from django import forms
 import os
 from django.urls import reverse
-from datetime import datetime
+import datetime
 from django_quill.fields import QuillField
 # Create your models here.
 
@@ -47,7 +47,7 @@ class Poll(models.Model):
     email = models.CharField(max_length=80)
     total = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
-    expiration_date = models.DateTimeField(default=datetime.now())
+    expiration_date = models.DateTimeField(default=timezone.now() + datetime.timedelta(days=1))
     def __str__(self):
-    	return self.question
+    	return str(self.total)
 	
