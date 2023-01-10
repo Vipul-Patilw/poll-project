@@ -1,6 +1,8 @@
 {% extends "header.html" %} 
 {% block content %}
 {{form.media}}
+<link rel="stylesheet" href="{{ static ( 'admin/css/django_quill.css') }}">
+<script type="text/javascript" src="{{ static ('admin/js/django_quill.js') }}"></script>
 <style type="text/css">
 .ql-editor{
     height:150px!important;
