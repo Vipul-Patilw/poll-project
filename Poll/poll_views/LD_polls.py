@@ -1,17 +1,21 @@
 from django.views.generic import ListView,DetailView
 from Poll.models import Poll
 from django.shortcuts import  render,redirect,HttpResponse
-class PollsList(ListView):
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+class PollsList(ListView,LoginRequiredMixin):
 	model = Poll
 	context_object_name = "poll_list"
 	ordering = ["-total"]
 	
 		
-class PollDetail(DetailView):
+class PollDetail(DetailView,LoginRequiredMixin):
 	model = Poll
 	context_object_name = "poll"	
 	
 def voting(request,poll_pk):
+		if request.user.is_anonymous:
+			return redirect('login')
 		poll = Poll.objects.get(pk=poll_pk)
 		if request.method == "POST":
 			submit_option = request.POST.get('poll')

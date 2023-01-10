@@ -4,13 +4,14 @@ from django.urls import reverse_lazy
 from Poll.models import Poll
 from django.utils import timezone
 import datetime
-class CreatePollView(CreateView):
+from django.contrib.auth.mixins import LoginRequiredMixin
+class CreatePollView(CreateView,LoginRequiredMixin):
 	template_name = "create-poll.html"
 	form_class = CreatePollForm
 	success_url = reverse_lazy("home")
 
 	
-class UpdatePoll(UpdateView):
+class UpdatePoll(UpdateView,LoginRequiredMixin):
 	template_name = "create-poll.html"
 	model = Poll
 	form_class = CreatePollForm
