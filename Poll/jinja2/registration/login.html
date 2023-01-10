@@ -41,7 +41,7 @@
      <a href="{{ url('registration') }}"><button type="button" class="btn btn-primary red_button">SIGN IN</button></a>
                                     <p class="text-center m-4">OR</p>    
             <button class="btn btn-primary mb-2" >
-       <a style="color:white" href="">Login With Gmail <img src="{{ static('gmail-logo.png')}}" class=""
+       <a style="color:white" href="{{ url('social:begin' , args=['google-oauth2']) }}">Login With Gmail <img src="{{ static('gmail-logo.png')}}" class=""
         height="20"
         width="20"
         alt="avtar"

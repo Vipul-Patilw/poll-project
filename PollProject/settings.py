@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_flatpickr',
     'mailqueue',
-#    'social_django',
+   'social_django',
 'django_quill',
 'django_celery_beat'
 
@@ -85,7 +85,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-          #       'social_django.context_processors.backends', 
+                'social_django.context_processors.backends', 
           
 ]}
         },
@@ -223,15 +223,15 @@ EMAIL_USE_TLS = EMAIL_USE_TLS
 EMAIL_PORT= EMAIL_PORT
 EMAIL_HOST_PASSWORD=EMAIL_HOST_PASSWORD
 
-#AUTHENTICATION_BACKENDS = [
-#    'social_core.backends.google.GoogleOAuth2',
-#    'django.contrib.auth.backends.ModelBackend',
-#]
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 #Poll
 #Poll-374013
-#SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '655898094440-pbqqv8s0ircbgv1tj3k348abgblhm0sp.apps.googleusercontent.com'
-#SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '655898094440-pbqqv8s0ircbgv1tj3k348abgblhm0sp.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 # AUTH_USER_MODEL = 'Poll.UserRegistration'
 
 #STATICFILES_STORAGE = 'PollProject.storage.S3Storage'

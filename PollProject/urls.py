@@ -25,7 +25,7 @@ admin.site.index_title = "Welcome to Bombay Softwares"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Poll.urls')),#	path('accounts/', include('allauth.urls',namespace="social")),
-#    path('social-auth/', include('social_django.urls', namespace='social')),
+    path('social-auth/', include('social_django.urls', namespace='social')),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
