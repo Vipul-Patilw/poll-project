@@ -18,9 +18,9 @@ from django.urls import path, include
 from django.conf.urls.static import static  
 from django.conf import settings  
 
-admin.site.site_header = "Bombay Softwares Admin"
-admin.site.site_title = "Bombay Softwares Admin Portal"
-admin.site.index_title = "Welcome to Bombay Softwares"
+admin.site.site_header = "Poll Admin"
+admin.site.site_title = "Poll Admin Portal"
+admin.site.index_title = "Welcome to Poll"
 
 urlpatterns = [
     path('admin/', admin.site.urls),

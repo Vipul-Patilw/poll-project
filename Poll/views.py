@@ -33,7 +33,7 @@ Your password is changed successfully.
 Please login again to application 
 
 Thanks,
-Bombay Softwares 
+Poll
 """
 	msg = MailerMessage()
 	msg.subject = "Password Updated"
@@ -43,25 +43,7 @@ Bombay Softwares
 	msg.html_content = content
 	#msg.sent = True
 	msg.save()
-	#Using django mail method
-	#email_sub = 'Password Updated'
-#	email_body = """
-#Dear user,
 
-#Your Password is Changed successfully.
-#Login again to application 
-
-#Thanks,
-#Bombay Softwares 
-#"""
-#	email = EmailMessage(
-#				email_sub,
-#				email_body,
-#				settings.EMAIL_HOST_USER,
-#				[request.user.email],
-#				)
-#	email.fail_silently = True
-#	email.send()
 	logout(request)
 	return redirect ('logout-page')
   
