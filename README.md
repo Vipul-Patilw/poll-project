@@ -1,5 +1,5 @@
 # poll-project
-This is the applcation where you can add your polls. you can ask your questions with options and people will vote.
+This is the applcation where you can add your polls. you can ask your questions with options and people will vote.<br>
 Website Link: http://13.230.51.96/
 
 
