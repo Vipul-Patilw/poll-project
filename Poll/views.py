@@ -81,6 +81,8 @@ def updateProfile(request):
 	return render(request,"profile.html")
 
 def search (request):
+			if request.user.is_anonymous:
+				return redirect('login')
 			if 'search' in request.POST:
 			     	search= request.POST.get('search')
 			     	polls = Poll.objects.filter(question__icontains = search).all()

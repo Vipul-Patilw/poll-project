@@ -1,14 +1,14 @@
 server {
     listen 80;
-    server_name 54.199.247.179;
-
+    server_name 13.230.51.96;
+    client_max_body_size 3000M;
     location = /favicon.ico { access_log off; log_not_found off; }
     location /static/ {
-        root /home/ubuntu/Bombay-softwares-project;
+        root /home/ubuntu/project/poll-project;
     }
     
     location /media/ {
-        root /home/ubuntu/Bombay-softwares-project;
+        root /home/ubuntu/project/poll-project;
     }
 
     location / {

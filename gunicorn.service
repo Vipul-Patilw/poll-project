@@ -6,12 +6,12 @@ After=network.target
 [Service]
 User=ubuntu
 Group=www-data
-WorkingDirectory=/home/ubuntu/Bombay-softwares-project
-ExecStart=/home/ubuntu/myprojectdir/myprojectenv/bin/gunicorn \
+WorkingDirectory=/home/ubuntu/project/poll-project
+ExecStart=/home/ubuntu/project/myprojectenv/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
           --bind unix:/run/gunicorn.sock \
-          BombaySoftwaresProject.wsgi:application
+          PollProject.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
