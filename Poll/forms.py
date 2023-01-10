@@ -30,8 +30,9 @@ class CreatePollForm(ModelForm):
        op3 = self.cleaned_data["option_three"]
        op4 = self.cleaned_data["option_four"]
        poll_limit = Poll.objects.filter(email=email).count()
-       if poll_limit >= 4:
-       	raise ValidationError({'question':'Sorry you already created 4 polls, your limit is over you need to wait till 24hrs to again create new poll'})	
+       if not self.instance.pk:
+         	if poll_limit >= 4:
+         		raise ValidationError({'question':'Sorry you already created 4 polls, your limit is over you need to wait till 24hrs to again create new poll'})	
        if op1 == op2 or  op2 == op3 or op1==op3 or op1==op4 or op2 == op4 or op3 == op4:
        	raise ValidationError({'option_one':'Options should be unique from each other','option_two':'Options should be unique from each other','option_three':'Options should be unique from each other','option_four':'Options should be unique from each other'})
        
