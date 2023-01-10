@@ -48,8 +48,6 @@ Poll
 	return redirect ('logout-page')
   
 def updateProfile(request):
-	if request.user.is_anonymous:
-		return redirect('login')
 	
 	if request.method == 'POST':
 		profile_pic = request.FILES.get('profile_pic')
