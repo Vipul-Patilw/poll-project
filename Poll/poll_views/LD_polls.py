@@ -3,13 +3,13 @@ from Poll.models import Poll
 from django.shortcuts import  render,redirect,HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-class PollsList(ListView,LoginRequiredMixin):
+class PollsList(LoginRequiredMixin,ListView,):
 	model = Poll
 	context_object_name = "poll_list"
 	ordering = ["-total"]
 	
 		
-class PollDetail(DetailView,LoginRequiredMixin):
+class PollDetail(LoginRequiredMixin,DetailView):
 	model = Poll
 	context_object_name = "poll"	
 	

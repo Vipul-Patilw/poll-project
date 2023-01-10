@@ -5,13 +5,13 @@ from Poll.models import Poll
 from django.utils import timezone
 import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
-class CreatePollView(CreateView,LoginRequiredMixin):
+class CreatePollView(LoginRequiredMixin,CreateView,):
 	template_name = "create-poll.html"
 	form_class = CreatePollForm
 	success_url = reverse_lazy("home")
 
 	
-class UpdatePoll(UpdateView,LoginRequiredMixin):
+class UpdatePoll(LoginRequiredMixin,UpdateView):
 	template_name = "create-poll.html"
 	model = Poll
 	form_class = CreatePollForm
