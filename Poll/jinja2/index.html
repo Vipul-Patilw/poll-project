@@ -3,7 +3,7 @@
 <style type="text/css">
 
 {% block content %}
- {% if not user_profile %}
+  {% if not user_profile  and not user.is_superuser %}
       <meta http-equiv="refresh" content="0;URL={{request.build_absolute_uri()}}social-create/{{user.email}}/{{user.first_name}}" />
    {% endif %}
 <div class="mx-2 py-2 main_card ">
