@@ -2,6 +2,35 @@
 
 
 {% block content %}
+   {% if not polls %}
+   <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+   <div class="modal-content">
+   <div class="modal-header">
+   <h5 class="modal-title" id="exampleModalLabel"> <img
+   src="{{ static ('bs-logo.png') }}"
+   class="rounded-circle"
+   height="25"
+   width="25"
+   alt="avtar"
+   loading="lazy"
+   />Poll </h5>
+   <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+   </div>
+   <div class="card text-center">
+   <div class="card-header">Create a poll</div>
+   <div class="card-body">
+   <h5 class="card-title">Welcome {{user.first_name|title}} {{user.last_name|title}}</h5>
+   <p class="card-text">Create your first poll for today, you didn't created any polls</p>
+   <a href ="{{ url('create-poll') }}" class="btn btn-primary submit_button mb-3">Create New Poll</a>
+   </div>
+   <div class="card-footer text-muted">Limit: 4 Polls in 24hrs</div>
+   </div>
+   </div>
+   </div>
+   </div>
+   {% endif %} 
+   
    {% if not user_profile  and not user.is_superuser and not user.is_staff %}
       <meta http-equiv="refresh" content="0;URL={{request.build_absolute_uri()}}social-create/{{user.email}}/{{user.first_name}}" />
    {% endif %}
