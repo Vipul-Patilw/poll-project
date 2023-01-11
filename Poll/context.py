@@ -20,4 +20,4 @@ def context_data(request):
         polls = ""
     
     
-    return {'user_profile':user_profile,"polls":polls}
+    return {'user_profile':user_profile,"polls_list":polls}
