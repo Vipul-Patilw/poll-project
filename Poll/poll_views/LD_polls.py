@@ -1,5 +1,6 @@
 from django.views.generic import ListView,DetailView
 from Poll.models import Poll
+from django.utils import timezone
 from django.shortcuts import  render,redirect,HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -7,6 +8,12 @@ class PollsList(LoginRequiredMixin,ListView,):
 	model = Poll
 	context_object_name = "poll_list"
 	ordering = ["-total"]
+	def get_queryset(self):
+	   polls = Poll.objects.all()
+	   for poll in polls:
+	           	if poll.expiration_date < timezone.now():
+	           		poll.delete()
+	   return super(PollsList,self).get_queryset()
 	
 		
 class PollDetail(LoginRequiredMixin,DetailView):
